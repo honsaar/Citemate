@@ -1,8 +1,9 @@
-# Citemate
+<p align="center"><img src="https://github.com/honsaar/Citemate/blob/master/src/assets/logo.svg" width="150" alt="Citemate logo"></p>
+<br>
+<p align="center"><em>Citations simplified</em></p>
+<hr>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard)
-
-Academic reference generator; CiteThisForMe but less ad-intrusive
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard) 
 
 ## Feature List
 - Use [CrossRef API](https://github.com/CrossRef/rest-api-doc) to get academic MetaData from Journal Articles
