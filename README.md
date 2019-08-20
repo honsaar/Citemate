@@ -1,8 +1,5 @@
-<p align="center"><img src="https://github.com/honsaar/Citemate/blob/master/src/assets/logo.svg" width="150" alt="Citemate logo"></p>
+<h1 align="center"><img src="https://github.com/honsaar/Citemate/blob/master/src/assets/logo.svg" width="150" alt="Citemate logo"></h1>
 <p align="center"><em>Citations simplified</em></p>
-<hr>
-
-## Tests
 
   [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard) 
 
