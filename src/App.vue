@@ -1,47 +1,52 @@
 <template>
   <div id="app">
-
-      <b-navbar id="nav" toggleable="lg">
+    <b-navbar id="nav" toggleable="lg">
       <!-- logo -->
-      <b-navbar-brand class="brand">Citemate.</b-navbar-brand>
+      <b-navbar-brand class="brand"><router-link to="/">Citemate.</router-link></b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-       <b-collapse id="nav-collapse" is-nav>
-      <!-- nav links, pull right -->
-       <b-navbar-nav class="ml-auto">
-        <b-nav-item> <router-link to="/">Home </router-link> </b-nav-item>
-        <b-nav-item> <router-link to="/about">About </router-link></b-nav-item>
-        <b-nav-item> <router-link to="/citations">My Citations </router-link></b-nav-item>
+      <b-collapse id="nav-collapse" is-nav>
+        <!-- nav links, pull right -->
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item>
+            <router-link to="/">Home</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/knowledge">Knowledge Centre</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/cite">Your Bibliography</router-link>
+          </b-nav-item>
 
-        <!-- <b-nav-item> <router-link to="/about"><b-btn>Get Started</b-btn></router-link></b-nav-item> -->
-       </b-navbar-nav>
-       </b-collapse>
-      </b-navbar>
+          <!-- <b-nav-item> <router-link to="/about"><b-btn>Get Started</b-btn></router-link></b-nav-item> -->
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
 
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://rsms.me/inter/inter.css");
 @font-face {
-    font-family: Bagnard;
-    src: url("./assets/Bagnard.otf") format("opentype");
+  font-family: Bagnard;
+  src: url("./assets/Bagnard.otf") format("opentype");
 }
 
-html {
 
-}
 
 #app {
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #273043;
-  background: #F5F6F3;
+  background: #f5f6f3;
 }
 
 @supports (font-variation-settings: normal) {
-  #app { font-family: 'Inter var', sans-serif; }
+  #app {
+    font-family: "Inter var", sans-serif;
+  }
 }
 
 #nav {
@@ -57,20 +62,90 @@ html {
   color: #ff8552;
 }
 
+.brand a.router-link-exact-active {
+  color: #273043 !important;
+}
+
 .right {
   float: right;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 .brand {
-  font-family: 'Bagnard', serif;
+  font-family: "Bagnard", serif;
+  
 }
 
 .navbar-toggler {
   /* override Bootstrap styling of toggler */
-  border: none !important; 
+  border: none !important;
+}
+.hero {
+  text-align: center;
+  min-height: 400px;
+  padding-top: 10em;
+  background: #f5f6f3;
+}
+.resultCard {
+  background: white;
+  border-radius: 10px;
+  margin: 1em;
+  padding: 1em;
+}
+#features {
+  padding-top: 5em;
+  text-align: center;
+}
+
+#features .brand {
+  font-size: 1.3em;
+}
+
+#features img {
+  width: 40px;
+}
+
+.primeButt {
+  background: #ff8552 !important;
+  border: 1px solid #ff8552 !important;
+  border-radius: 0 !important;
+}
+.primeButt:hover {
+  background: #ce693e !important;
+  border: 1px solid #ce693e !important;
+}
+.primeButt:active {
+  /* override bootstrap here again */
+  background: #c2633a !important;
+  border: 1px solid #c2633a !important;
+}
+
+.secButt {
+  background: #d6d7d4 !important;
+  border: 1px solid #d6d7d4 !important;
+  border-radius: 0 !important;
+  color: #727270 !important;
+  margin: 1em;
+}
+
+.secButt:hover {
+  background: #c4c6c1 !important;
+  border: 1px solid #c4c6c1 !important;
+}
+
+.secButt:active {
+  background: #b4b5b2 !important;
+  border: 1px solid #b4b5b2 !important;
+
+}
+
+.hints {
+  background:#f5f6f3;
+  padding: 2em;
+  text-align: center;
+
 }
 </style>
