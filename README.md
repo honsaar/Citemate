@@ -1,4 +1,7 @@
 # Citemate
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard)
+
 Academic reference generator; CiteThisForMe but less ad-intrusive
 
 ## Feature List
