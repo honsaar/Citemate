@@ -23,7 +23,7 @@
             <b-col>
               <p><img src="../assets/ref.svg"/></p>
               <p class=""><strong>Your format, your way</strong></p>
-              <p>Format your references for Harvard, MLA, Chicago styles plus many others</p>
+              <p>Format your references for Harvard, MLA and Chicago styles plus many others</p>
             </b-col>
             <b-col>
               <p><img src="../assets/priv.svg"/></p>
@@ -61,7 +61,7 @@
 <style scoped>
 .hero {
   text-align: center;
-  min-height: 400px;
+  min-height: 600px;
   padding-top: 10em;
   background: #f5f6f3;
 }
