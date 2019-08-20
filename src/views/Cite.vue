@@ -2,8 +2,16 @@
   <div class="about">
     <div class="hero">
       <div class="container">
+
+        <!-- use this layout if the bibliography is empty, otherwise change the wording and layout of the top -->
+
+        <div id="stages">
+          <!-- 1: choose your reference style; 2: choose the type of resource you're citing; 3: search -->
+
+        </div>
+
         <div id="refStyle">
-          <h1 class="brand">Choose your reference style</h1>
+          <h1 class="brand">First, choose your reference style</h1>
           <p class="subtitle">Don't worry, you can change your reference style at any point.</p>
           <br />
           <b-btn variant="primary" class="secButt" @click="chooseStyle('Harvard')">Harvard</b-btn>
@@ -16,6 +24,7 @@
           <div v-if="showMore">
             <p>Show more styles here</p>
           </div>
+          <br><br>
         </div>
       </div>
     </div>
@@ -23,9 +32,13 @@
       <br />
       <br />
       <br />
-      <p style="text-align: center;">
-        <b-btn variant="primary" class="primeButt" @click="cite()">Test cite, yo</b-btn>
-      </p>
+      <div style="text-align: center;">
+         <!-- <b-btn variant="primary" class="primeButt" @click="cite()">Test cite, yo</b-btn> -->
+         <div id="emptyState" v-if="bibliography.length < 1">
+          <h2 class="brand">Your bibliography is currently empty</h2>
+          <p>Start adding references by choosing a reference style</p>
+          </div>
+        </div>
       <br />
       <br />
       <div class="results">
@@ -56,6 +69,8 @@ export default {
   components: {},
   data: function() {
     return {
+      bibliography: [],
+      adding: false,
       results: [],
       query:
         "Is+chronic+breathlessness+less+recognised+and+treated+compared+with+chronic+pain",

@@ -2,7 +2,7 @@
   <div id="app">
     <b-navbar id="nav" toggleable="lg">
       <!-- logo -->
-      <b-navbar-brand class="brand"><router-link to="/">Citemate.</router-link></b-navbar-brand>
+      <b-navbar-brand class="brand"><router-link to="/">Citemate<sup class="brandSup">[1]</sup></router-link></b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <!-- nav links, pull right -->
@@ -33,7 +33,10 @@
   src: url("./assets/Bagnard.otf") format("opentype");
 }
 
-
+.brandSup {
+  top: -1em;
+  font-size: 0.5em;
+}
 
 #app {
   font-family: "Inter", Helvetica, Arial, sans-serif;
