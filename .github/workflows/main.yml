@@ -1,0 +1,10 @@
+workflow "Publish on Netlify" {
+  on = "push"
+  resolves = ["Publish"]
+}
+
+action "Publish" {
+  uses = "netlify/actions/cli@master"
+  args = "deploy --dir=site --functions=functions"
+  secrets = ["3bc7f3938254e7382bfca45f96361b3a5b6397ca9e6466bb6c858323735e51c7", "d1bee6ab-e006-4fdd-815c-d39a103d2d1a"]
+}
