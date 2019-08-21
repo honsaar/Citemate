@@ -14,7 +14,7 @@
             <router-link to="/knowledge">Knowledge Centre</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/cite">Your Bibliography</router-link>
+            <router-link to="/cite"><b-btn variant="primary" class="secButt" style="margin: auto;margin-top: -7px;">Your Bibliography</b-btn></router-link>
           </b-nav-item>
 
           <!-- <b-nav-item> <router-link to="/about"><b-btn>Get Started</b-btn></router-link></b-nav-item> -->
