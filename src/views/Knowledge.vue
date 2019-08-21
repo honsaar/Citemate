@@ -33,7 +33,7 @@
              <div class="hints">
           <span class="brand">
             <p>I have to reference using a style that Citemate doesn't have!</p></span>
-            <p>We try to have everything you might need in your work or studies, but sometimes we can't capture everything. Get in touch with us via email if there is critical information missing or a style that Citemate can't help you with</p>
+            <p>We try to have everything you might need in your work or studies, but sometimes we can't capture everything. Get in touch with us <a href="mailto:honsyb@gmail.com">via email</a> or tweet to <a href="//twitter.com/honsaar">@honsaar</a> if there is critical information missing or a style that Citemate can't help you with</p>
         </div>
            
         </div>
@@ -48,5 +48,12 @@ export default {
 </script>
 
 <style>
+.hints a {
+  color: inherit;
+  text-decoration: underline;
+}
 
+.hints a:hover {
+  color: #ff8552;
+}
 </style>
