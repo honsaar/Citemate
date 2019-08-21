@@ -1,7 +1,7 @@
 <h1 align="center"><img src="https://github.com/honsaar/Citemate/blob/master/src/assets/logo.svg" width="150" alt="Citemate logo"></h1>
 <p align="center"><em>Citations simplified</em></p>
 
-  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard) 
+  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0e99898f1084a1fb3abff9da15ec966)](https://app.codacy.com/app/honsaar/Citemate?utm_source=github.com&utm_medium=referral&utm_content=honsaar/Citemate&utm_campaign=Badge_Grade_Dashboard)  [![Netlify Status](https://api.netlify.com/api/v1/badges/d1bee6ab-e006-4fdd-815c-d39a103d2d1a/deploy-status)](https://app.netlify.com/sites/stoic-leavitt-35fcf7/deploys)
 
 # Wat
 Stop creating your bibliographies and reference lists by hand. Citemate generates your in-text references and bibliography for you.
