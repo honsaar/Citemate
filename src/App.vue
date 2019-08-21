@@ -92,12 +92,6 @@
   padding-top: 10em;
   background: #f5f6f3;
 }
-.resultCard {
-  background: white;
-  border-radius: 10px;
-  margin: 1em;
-  padding: 1em;
-}
 #features {
   padding-top: 5em;
   text-align: center;
