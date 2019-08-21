@@ -102,7 +102,7 @@
       <br />
       <div style="text-align: center;">
          <!-- <b-btn variant="primary" class="primeButt" @click="cite()">Test cite, yo</b-btn> -->
-         <div id="emptyState" v-if="bibliography.length < 1">
+         <div id="emptyState" v-if="bibliography.length < 1 && !searching">
            <img src="../assets/empty.svg" width="300"/>
           <h2 class="brand">Your bibliography is currently empty</h2>
           <p>This is where your reference list will appear once you add an information source</p>
@@ -112,7 +112,7 @@
       <br />
       <br />
       <!-- show the results differently. In a modal? -->
-      <div class="results">
+      <div class="results container">
         <div class="resultCard" v-for="(paper, key) in results" :key="key">
           <p>
             <strong>{{paper.title}}</strong>
@@ -122,6 +122,7 @@
             {{author.given}} {{author.family}}<span v-if="index < paper.authors.length-1">,</span>
             </span>
           </p>
+          <b-badge pill variant="primary" class="journalPill">{{paper.journal}}</b-badge>
         </div>
       </div>
     </div>
@@ -154,13 +155,18 @@ export default {
         {value: 'CSIRO', text: 'CSIRO'},
       ],
       selected: '',
-      sourceType: ''
+      sourceType: '',
+      searching: false
     };
   },
   methods: {
     cite(evt) {
-      evt.preventDefault()
+      evt.preventDefault();
+      this.results = [];
+      this.searching = true;
       console.log("Loading response...");
+
+      //UPDATE THIS so that CrossRef is making better API calls as per their guidelines
       axios
         .get("https://api.crossref.org/works?query=" + this.query)
         .then(response => {
@@ -264,9 +270,21 @@ export default {
   border: 1px solid #b4b5b2 !important;
 
 }
-
 .centered {
   margin-left: auto;
   margin-right: auto;
+}
+
+.resultCard {
+  background: #f5f6f3;
+  padding: 2em;
+  margin: 1em;
+}
+
+.journalPill {
+  background: #d6d7d4;
+  color: #727270;
+  margin-top: 1em;
+  margin-left: -5px;
 }
 </style>
