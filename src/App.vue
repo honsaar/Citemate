@@ -43,7 +43,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #273043;
-  background: #f5f6f3;
 }
 
 @supports (font-variation-settings: normal) {
@@ -54,6 +53,7 @@
 
 #nav {
   padding: 30px;
+  z-index: 99;
 }
 
 #nav a {
@@ -88,9 +88,12 @@
 }
 .hero {
   text-align: center;
-  min-height: 400px;
-  padding-top: 10em;
-  background: #f5f6f3;
+min-height: 500px;
+padding-top: 15em;
+background: #f5f6f3;
+padding-bottom: 2em;
+position: relative;
+top: -7em;
 }
 #features {
   padding-top: 5em;
@@ -125,9 +128,8 @@
   border: 1px solid #d6d7d4 !important;
   border-radius: 0 !important;
   color: #727270 !important;
-  margin: 1em;
-}
 
+}
 .secButt:hover {
   background: #c4c6c1 !important;
   border: 1px solid #c4c6c1 !important;
@@ -137,6 +139,10 @@
   background: #b4b5b2 !important;
   border: 1px solid #b4b5b2 !important;
 
+}
+
+.styleChoice .secButt {
+  margin: 1em;
 }
 
 .hints {
