@@ -88,7 +88,7 @@
 }
 .hero {
   text-align: center;
-min-height: 600px;
+min-height: 500px;
 padding-top: 15em;
 background: #f5f6f3;
 padding-bottom: 2em;

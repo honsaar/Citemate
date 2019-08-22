@@ -100,7 +100,7 @@
 
 
  <!-- show paper details -->
-      <div class="results container" style="max-width: 60%;margin-left: auto;margin-right: auto;">
+      <div class="results container" style="margin-left: auto;margin-right: auto;">
         <div class="resultCard" v-if="adding != undefined">
           <b-row>
             <b-col>
@@ -161,8 +161,9 @@
         <div class="results container" v-if="!searching && !adding && !addingSource">
           <h1 class="brand">Your references</h1>
           <p class="subtitle">Your bibliography currently has {{bibliography.length}} item<span v-if="bibliography.length > 1">s</span>.</p>
+          <p>You are currently using <strong>{{selected}}</strong> referencing style. &nbsp;&nbsp;<b-button variant="primary" class="primeButt" @click="selected = ''">Change</b-button></p>
 
-          <b-button variant="primary" class="primeButt" @click="addingSource = true">Add a reference</b-button>
+          
 
         <div class="resultCard" v-for="(paper, key) in bibliography" :key="key">
 
@@ -178,6 +179,7 @@
               <p class="journalPill">{{paper.journal}}</p>
 
         </div>
+        <b-button variant="primary" class="primeButt" @click="addingSource = true">Add a reference</b-button>
       </div>
 
 
@@ -244,7 +246,7 @@ export default {
         { value: "APA", text: "APA" },
         { value: "CSIRO", text: "CSIRO" }
       ],
-      selected: "",
+      selected: "Harvard",
       sourceType: "",
       searching: false,
       loading: false,
