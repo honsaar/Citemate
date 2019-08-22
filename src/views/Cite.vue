@@ -1,11 +1,12 @@
 <template>
   <div class="about">
-    <div class="hero" :class="addingSource ? '' : 'hideHero'">
+    <div class="hero" :class="addingSource || changingStyle ? '' : 'hideHero'">
       <div class="container">
         <!-- use this layout if the bibliography is empty, otherwise change the wording and layout of the top -->
       <div>
-        <div id="refStyle" v-if="selected == ''">
-          <h1 class="brand">First, choose your reference style</h1>
+        <div id="refStyle" v-if="selected == '' && addingSource || selected == '' && changingStyle">
+          <h1 class="brand" v-if="changingStyle">Which reference style do you need?</h1>
+          <h1 class="brand" v-else>First, choose your reference style</h1>
           <p class="subtitle">Don't worry, you can change your reference style at any point.</p>
           <br />
           <div class="styleChoice">
@@ -101,7 +102,7 @@
 
  <!-- show paper details -->
       <div class="results container" style="margin-left: auto;margin-right: auto;">
-        <div class="resultCard" v-if="adding != undefined">
+        <div class="resultCard" v-if="adding">
           <b-row>
             <b-col>
               <h3 class="brand" style="margin-bottom: 1em;">Here's what we could find for this source:</h3>
@@ -150,18 +151,21 @@
       </div>
 
       <!-- emptyState -->
-        <div id="emptyState" v-if="bibliography.length < 1 && !searching" style="text-align: center;">
+        <div id="emptyState" v-if="bibliography.length < 1 && !searching && !addingSource && !adding" style="text-align: center;">
           <img src="../assets/empty.svg" width="300" />
           <h2 class="brand">Your bibliography is currently empty</h2>
           <p>This is where your reference list will appear once you add an information source</p>
+           <p style="text-align: center">
+                <b-btn variant="primary" class="primeButt" @click="addingSource = true">Add your first reference</b-btn>
+              </p>
         </div>
 
 
         <!-- if bibliography isn't empty -->
-        <div class="results container" v-if="!searching && !adding && !addingSource">
+        <div class="results container" v-if="!searching && !adding && !addingSource && bibliography.length > 0">
           <h1 class="brand">Your references</h1>
           <p class="subtitle">Your bibliography currently has {{bibliography.length}} item<span v-if="bibliography.length > 1">s</span>.</p>
-          <p>You are currently using <strong>{{selected}}</strong> referencing style. &nbsp;&nbsp;<b-button variant="primary" class="primeButt" @click="selected = ''">Change</b-button></p>
+          <p v-if="!changingStyle">You are currently using <strong>{{selected}}</strong> referencing style. &nbsp;&nbsp;<b-button variant="primary" class="primeButt" @click="changeStyle()">Change</b-button></p>
 
           
 
@@ -194,9 +198,11 @@
         </div>
       </div>
 
-      <!-- show the results differently. In a modal? -->
+      <!-- show the results -->
       <div class="results container">
+        
         <div class="resultCard" v-for="(paper, key) in results" :key="key">
+          <h2 class="brand" v-if="key == 0">Journal results</h2>
           <b-row>
             <b-col sm="12" md="10">
               <p>
@@ -246,23 +252,13 @@ export default {
         { value: "APA", text: "APA" },
         { value: "CSIRO", text: "CSIRO" }
       ],
-      selected: "Harvard",
+      selected: "",
       sourceType: "",
       searching: false,
       loading: false,
-      adding: {
-        authors: [{ given: "Testy", family: "McTestFace" }, { given: "Testy", family: "McTestFace II" }],
-        doi: "11111",
-        issue: "1",
-        journal: "Journal of Testing",
-        link: "http:/example.com:",
-        pages: "100-120",
-        published: { day: "1", month: "12", year: "1992" },
-        publisher: "Penguin",
-        title: "Testing: A meta-analysis of testing data in UI",
-        volume: "420"
-      },
-      addingSource: false
+      adding: undefined,
+      addingSource: false,
+      changingStyle: false
     };
   },
   methods: {
@@ -315,6 +311,7 @@ export default {
               }
               tempResult.pages = search.page;
               this.results.push(tempResult);
+              this.addingSource = false;
             }
           }
         });
@@ -325,12 +322,18 @@ export default {
     styleList() {
       console.log("Loading list of other styles...");
     },
+    changeStyle(){
+      this.selected = '';
+      // this.addingSource = true;
+      this.changingStyle = true;
+    },
     chooseStyle(style) {
       console.log("Current reference style is " + style);
       if (this.selected !== style) {
         this.selected = style;
       }
       console.log(this.selected);
+      this.changingStyle = false;
     },
     assessSource(source) {
       //remove search results, show paper details and confirm if it needs to be added.
@@ -358,7 +361,7 @@ export default {
   height: 0px !important;
   min-height: 0px;
   padding: 0;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 .styleList {
   font-size: 0.8em;
@@ -372,6 +375,7 @@ export default {
 
 #emptyState {
   color: #d6d7d4;
+  margin-top: 20%;
 }
 
 .refLists {
