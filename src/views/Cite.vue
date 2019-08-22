@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <div class="hero">
+    <div class="hero" :class="addingSource ? '' : 'hideHero'">
       <div class="container">
         <!-- use this layout if the bibliography is empty, otherwise change the wording and layout of the top -->
-
+      <div>
         <div id="refStyle" v-if="selected == ''">
           <h1 class="brand">First, choose your reference style</h1>
           <p class="subtitle">Don't worry, you can change your reference style at any point.</p>
@@ -30,10 +30,12 @@
           <br />
           <br />
         </div>
+        </div>
 
         <!-- Choose your source -->
-        <div id="refStyle" v-if="selected != '' && sourceType == ''">
-          <h1 class="brand">Next, what are you referencing?</h1>
+        <div id="refStyle" v-if="selected != '' && sourceType == '' && addingSource">
+          <h1 class="brand" v-if="bibliography.length < 1">Next, what are you referencing?</h1>
+           <h1 class="brand" v-else>What are you referencing?</h1>
           <p class="subtitle">Different resource types are referenced slightly differently</p>
           <br />
           <b-row>
@@ -70,13 +72,10 @@
               </div>
             </b-col>
           </b-row>
-          <br />
-          <br />
-          <br />
         </div>
 
         <!-- search for your resource -->
-        <div id="refStyle" v-if="selected != '' && sourceType != ''">
+        <div id="refStyle" v-if="selected != '' && sourceType != '' && addingSource">
           <h1 class="brand">Finally, search for your resource</h1>
           <!-- change wording based on what type -->
           <p class="subtitle" v-if="sourceType=='journal'">
@@ -94,19 +93,93 @@
             >Search</b-button>
           </b-form>
 
-          <br />
         </div>
       </div>
     </div>
-    <div class="content" style="background: white;padding-top:3em;">
-      <div style="text-align: center;">
-        <!-- <b-btn variant="primary" class="primeButt" @click="cite()">Test cite, yo</b-btn> -->
-        <div id="emptyState" v-if="bibliography.length < 1 && !searching">
+    <div class="content" style="background: white;padding-top:0em;">
+
+
+ <!-- show paper details -->
+      <div class="results container" style="max-width: 60%;margin-left: auto;margin-right: auto;">
+        <div class="resultCard" v-if="adding != undefined">
+          <b-row>
+            <b-col>
+              <h3 class="brand" style="margin-bottom: 1em;">Here's what we could find for this source:</h3>
+              <div>
+              <h4>
+                {{adding.title}}
+              </h4>
+              <p>
+                <strong>Authors:</strong>
+                <span v-for="(author, index) in adding.authors" :key="index">
+                  {{author.given}} {{author.family}}
+                  <span v-if="index < adding.authors.length-1">,</span>
+                </span>
+              </p>
+              <p>
+                <strong>Journal:</strong>
+                {{adding.journal}}
+              </p>
+              <p>
+                <strong>Volume:</strong>
+                {{adding.volume}}
+              </p>
+              <p>
+                <strong>Issue:</strong>
+                {{adding.issue}}
+              </p>
+              <p>
+                <strong>Pages:</strong>
+                {{adding.pages}}
+              </p>
+              <p>
+                <strong>Publisher:</strong>
+                {{adding.publisher}}
+              </p>
+              <p>
+                <strong>Date:</strong>
+                {{adding.published.day}}-{{adding.published.month}}-{{adding.published.year}}
+              </p>
+               <p style="text-align: center">
+                <b-btn variant="primary" class="secButt" @click="addToList(adding)">That looks correct</b-btn>
+              </p>
+              </div>
+            </b-col>
+          </b-row>
+        </div>
+      </div>
+
+      <!-- emptyState -->
+        <div id="emptyState" v-if="bibliography.length < 1 && !searching" style="text-align: center;">
           <img src="../assets/empty.svg" width="300" />
           <h2 class="brand">Your bibliography is currently empty</h2>
           <p>This is where your reference list will appear once you add an information source</p>
         </div>
+
+
+        <!-- if bibliography isn't empty -->
+        <div class="results container" v-if="!searching && !adding && !addingSource">
+          <h1 class="brand">Your references</h1>
+          <p class="subtitle">Your bibliography currently has {{bibliography.length}} item<span v-if="bibliography.length > 1">s</span>.</p>
+
+          <b-button variant="primary" class="primeButt" @click="addingSource = true">Add a reference</b-button>
+
+        <div class="resultCard" v-for="(paper, key) in bibliography" :key="key">
+
+              <p>
+                <strong>{{paper.title}}</strong>
+              </p>
+              <p>
+                <span v-for="(author, index) in paper.authors" :key="index">
+                  {{author.given}} {{author.family}}
+                  <span v-if="index < paper.authors.length-1">,</span>
+                </span>
+              </p>
+              <p class="journalPill">{{paper.journal}}</p>
+
+        </div>
       </div>
+
 
       <div v-if="loading">
         <div class="gooey">
@@ -137,12 +210,14 @@
             </b-col>
             <b-col sm="12" md="2">
               <p style="text-align: center">
-                <b-btn variant="primary" class="secButt resultButt" @click="addToList(paper)">Cite</b-btn>
+                <b-btn variant="primary" class="secButt resultButt" @click="assessSource(paper)">Cite</b-btn>
               </p>
             </b-col>
           </b-row>
         </div>
       </div>
+
+     
     </div>
   </div>
 </template>
@@ -172,7 +247,20 @@ export default {
       selected: "",
       sourceType: "",
       searching: false,
-      loading: false
+      loading: false,
+      adding: {
+        authors: [{ given: "Testy", family: "McTestFace" }, { given: "Testy", family: "McTestFace II" }],
+        doi: "11111",
+        issue: "1",
+        journal: "Journal of Testing",
+        link: "http:/example.com:",
+        pages: "100-120",
+        published: { day: "1", month: "12", year: "1992" },
+        publisher: "Penguin",
+        title: "Testing: A meta-analysis of testing data in UI",
+        volume: "420"
+      },
+      addingSource: false
     };
   },
   methods: {
@@ -182,9 +270,10 @@ export default {
       this.searching = true;
       console.log("Loading response...");
       this.loading = true;
-      //UPDATE THIS so that CrossRef is making better API calls as per their guidelines
+      //add &mailto=honsyb@gmail.com to the query request once testing done
       axios
-        .get("https://api.crossref.org/works?query=" + this.query)
+        // .get("https://api.crossref.org/works?query=" + this.query + "&rows=10")
+        .get("https://api.crossref.org/works?sample=10")
         .then(response => {
           console.log("Loaded!");
           this.loading = false;
@@ -224,10 +313,8 @@ export default {
               }
               tempResult.pages = search.page;
               this.results.push(tempResult);
-              console.log(search);
             }
           }
-          console.log(this.results);
         });
     },
     book() {
@@ -243,17 +330,34 @@ export default {
       }
       console.log(this.selected);
     },
-    addToList(paper) {
-      console.log(paper);
+    assessSource(source) {
       //remove search results, show paper details and confirm if it needs to be added.
+      this.results = [];
+      this.searching = false;
+      this.adding = source;
+      console.log(this.adding);
+      this.addingSource = false;
       //also hide the top area, as that's only required when adding a source
       //create new top bar area to prompt users to add a new source
-    }
+    },
+  addToList(source){
+    console.log("adding to list");
+    this.bibliography.push(source);
+    this.adding = undefined;
+    this.addingSource = false;
+    this.sourceType = '';
+  }
   }
 };
 </script>
 
 <style>
+.hideHero {
+  height: 0px !important;
+  min-height: 0px;
+  padding: 0;
+  transition: all 0.4s ease-in-out;
+}
 .styleList {
   font-size: 0.8em;
   text-decoration: underline;
@@ -341,7 +445,14 @@ export default {
 }
 @media only screen and (max-width: 768px) {
   .sourceText {
-    top: 85%;
+    top: 75%;
+  }
+  .sources {
+    margin-bottom: 0em;
+  }
+  .gooey {
+    /* override margin on smaller screens */
+    margin-top: 20px !important;
   }
 }
 

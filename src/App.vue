@@ -43,7 +43,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #273043;
-  background: #f5f6f3;
 }
 
 @supports (font-variation-settings: normal) {
@@ -54,6 +53,7 @@
 
 #nav {
   padding: 30px;
+  z-index: 99;
 }
 
 #nav a {
@@ -88,10 +88,12 @@
 }
 .hero {
   text-align: center;
-  min-height: 400px;
-  padding-top: 10em;
-  background: #f5f6f3;
-  padding-bottom: 2em;
+min-height: 600px;
+padding-top: 15em;
+background: #f5f6f3;
+padding-bottom: 2em;
+position: relative;
+top: -7em;
 }
 #features {
   padding-top: 5em;
