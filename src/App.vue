@@ -87,13 +87,13 @@
   border: none !important;
 }
 .hero {
-  text-align: center;
-min-height: 500px;
-padding-top: 15em;
+text-align: center;
+min-height: 700px;
+padding-top: 22em;
 background: #f5f6f3;
 padding-bottom: 2em;
 position: relative;
-top: -7em;
+top: -15em;
 }
 #features {
   padding-top: 5em;

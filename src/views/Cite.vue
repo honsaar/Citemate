@@ -375,7 +375,7 @@ export default {
 
 #emptyState {
   color: #d6d7d4;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
 .refLists {
@@ -460,6 +460,10 @@ export default {
     /* override margin on smaller screens */
     margin-top: 20px !important;
   }
+  #emptyState {
+  color: #d6d7d4;
+  margin-top: 20%;
+}
 }
 
 .resultButt {
