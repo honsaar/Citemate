@@ -13,7 +13,6 @@
     </div>
    
     <div class="content" style="background: white;">
-        <br><br>
         <div class="container">
             <div id="academicReading" style="margin-bottom: 3em;">
                 <h2 class="brand">Academic Reading and Research</h2>
@@ -28,6 +27,12 @@
                 <h2 class="brand">Referencing</h2>
                 <p>General referencing guidelines</p>
                 <p><em>Then add in a list of buttons or accordions for common referencing styles</em></p>
+            </div>
+
+            <div id="coding" style="margin-bottom: 5em">
+                <h2 class="brand">Coding Guidelines</h2>
+                <p>Confused about how to write your code for your assignment? Can't tell your Horstmann from your Allman? Look no further, we've got your code covered.</p>
+                <p><em>List, with examples, different bracket/indentation styles.</em></p>
             </div>
 
              <div class="hints">

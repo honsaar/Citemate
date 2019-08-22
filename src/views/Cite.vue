@@ -142,7 +142,7 @@
                 {{adding.published.day}}-{{adding.published.month}}-{{adding.published.year}}
               </p>
                <p style="text-align: center">
-                <b-btn variant="primary" class="secButt" @click="addToList(adding)">That looks correct</b-btn>
+                <b-btn variant="primary" class="secButt" @click="addToList(adding)">That looks right</b-btn>
               </p>
               </div>
             </b-col>
@@ -153,7 +153,7 @@
       <!-- emptyState -->
         <div id="emptyState" v-if="bibliography.length < 1 && !searching && !addingSource && !adding" style="text-align: center;">
           <img src="../assets/empty.svg" width="300" />
-          <h2 class="brand">Your bibliography is currently empty</h2>
+          <h2 class="brand">Your bibliography is empty</h2>
           <p>This is where your reference list will appear once you add an information source</p>
            <p style="text-align: center">
                 <b-btn variant="primary" class="primeButt" @click="addingSource = true">Add your first reference</b-btn>
@@ -200,9 +200,9 @@
 
       <!-- show the results -->
       <div class="results container">
-        
+        <h2 class="brand" v-if="results.length > 0">Journal results</h2>
         <div class="resultCard" v-for="(paper, key) in results" :key="key">
-          <h2 class="brand" v-if="key == 0">Journal results</h2>
+          
           <b-row>
             <b-col sm="12" md="10">
               <p>
