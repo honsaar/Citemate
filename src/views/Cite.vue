@@ -29,53 +29,39 @@
           <p class="subtitle">Different resource types are referenced slightly differently</p>
           <br />
             <b-row>
-              <b-col>
+              <b-col sm="12" md="6" lg="3">
                 <div class="sources">
+                  <span class="sourceText">
                   <img src="../assets/book.svg" width="30"/>
                   <p>Book</p>
+                  </span>
                 </div>
               </b-col>
-              <b-col>
+              <b-col sm="12" md="6" lg="3">
                 <div class="sources" @click="sourceType='journal'">
+                  <span class="sourceText">
                   <img src="../assets/diary.svg" width="30"/>
                   <p>Journal Article</p>
+                  </span>
                 </div>
               </b-col>
-              <b-col>
+              <b-col sm="12" md="6" lg="3">
                 <div class="sources">
+                  <span class="sourceText">
                   <img src="../assets/newspaper.svg" width="30"/>
                   <p>Newspaper Article</p>
+                  </span>
                 </div>
               </b-col>
-              <b-col>
+              <b-col sm="12" md="6" lg="3">
                 <div class="sources">
+                  <span class="sourceText">
                   <img src="../assets/globe.svg" width="30"/>
                   <p>Website</p>
+                  </span>
                 </div>
               </b-col>
             </b-row>
-            <!-- <b-row>
-              <b-col>
-                <div class="sources">
-                  <p>Book</p>
-                </div>
-              </b-col>
-              <b-col>
-                <div class="sources">
-                  <p>Book</p>
-                </div>
-              </b-col>
-              <b-col>
-                <div class="sources">
-                  <p>Book</p>
-                </div>
-              </b-col>
-              <b-col>
-                <div class="sources">
-                  <p>Book</p>
-                </div>
-              </b-col>
-            </b-row> -->
           <br />
           <br><br>
         </div>
@@ -89,6 +75,7 @@
           <br />
          <b-form @submit="cite" class="refLists centered">
              <b-form-input v-model="query" placeholder="Journal Search" class="refLists"></b-form-input>
+             <b-button type="submit" variant="primary" class="primeButt" style="margin-top:-3px;">Search</b-button>
             </b-form>
            
           <br />
@@ -132,8 +119,6 @@
 <script>
 
 //FIXME: (not a fix, just so there's a highlight in Code) use this list for guides and a list of different styles: http://www.citethisforme.com/guides
-
-// @ is an alias to /src
 import axios from "axios";
 
 export default {
@@ -173,6 +158,7 @@ export default {
           console.log("Loaded!");
           for (let i = 0; i < response.data.message.items.length; i++) {
             var search = response.data.message.items[i];
+            if(search.type == "journal-article"){ //only return journal articles
             var tempResult = {
               title: "", //title[0]
               doi: "", //DOI
@@ -206,6 +192,7 @@ export default {
             tempResult.pages = search.page;
             this.results.push(tempResult);
             console.log(search);
+            }
           }
           console.log(this.results);
         });
@@ -243,9 +230,10 @@ export default {
 }
 
 .refLists {
-  max-width: 400px;
+  max-width: 600px;
   border: none;
   border-radius: 0;
+  display: inline;
 }
 
 .sources {
@@ -259,6 +247,7 @@ export default {
   color: #727270 !important;
   margin: 1em;
   cursor: pointer;
+  position: relative;
 }
 .sources:hover {
   background: #c4c6c1 !important;
@@ -286,5 +275,23 @@ export default {
   color: #727270;
   margin-top: 1em;
   margin-left: -5px;
+}
+.sourceText {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 100%;
+  margin: -15% 0 0 -25%;
+}
+
+@media only screen and (max-width: 990px) {
+  .sourceText{
+    top: 65%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .sourceText{
+    top: 85%;
+  }
 }
 </style>
